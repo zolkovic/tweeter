@@ -8,8 +8,9 @@ Non connecté nous pouvons :
 - se connecter
 - s'inscrire
 
-Connecté, nous pouvons également :
-- être un utilisateur lambda et pouvoir :
+Connecté, nous pouvons :
+- nous ne pouvons plus nous connecter ou nous inscrire, si nous forçons à le faire, nous sommes déconnecté
+- être un utilisateur lambda :
   - écrire un tweet
   - supprimer un de ses tweets
   - avoir sa propre Tweet List (la liste des tweets des gens que nous suivons)
@@ -22,7 +23,7 @@ Connecté, nous pouvons également :
   - consulter la liste des utilisateurs qui nous suivent
   - consulter la liste des tweets qu'on like
   - se déconnecter
-- être un membre Corp et pouvoir en plus du reste :
+- être un membre Corp :
   - avoir un tableau de bord
   - consulter la liste des utilisateurs classés par le plus grand nombre de followers
   - consulter la liste des utilisateurs classés par la plus grande sphère d'influence, dans cette sphère on ne compte les doublons d'utilisateurs ni son propre profil

@@ -101,20 +101,23 @@ class TweeterView extends \mf\view\AbstractView {
                         <h3>@'.$auteur->username.'</h3>
                         <h3>'.$auteur->followers.' followers   ';
         $auth = new \tweeterapp\auth\TweeterAuthentification();
-        $user = \tweeterapp\model\User::where('username','=',$auth->user_login)->first();
-        $db_follow = \tweeterapp\model\Follow::where([
-            ['follower','=',$user->id],
-            ['followee','=',$auteur->id],
-        ])->first();
-        if ($user->id != $auteur->id){
-            $entete_html .= '<a class="tweet-control" href="'.Router::urlFor('followbyprofile', ["id" => $auteur->id]).'">';
-            if(isset($db_follow)){
-                $entete_html .= '<img alt="Follow" src="'.$app_root.'/html/follow-done.png">';
-            }else{
-                $entete_html .= '<img alt="Follow" src="'.$app_root.'/html/follow.png">';
+        if ($auth->logged_in){
+            $user = \tweeterapp\model\User::where('username','=',$auth->user_login)->first();
+            $db_follow = \tweeterapp\model\Follow::where([
+                ['follower','=',$user->id],
+                ['followee','=',$auteur->id],
+            ])->first();
+            if ($user->id != $auteur->id){
+                $entete_html .= '<a class="tweet-control" href="'.Router::urlFor('followbyprofile', ["id" => $auteur->id]).'">';
+                if(isset($db_follow)){
+                    $entete_html .= '<img alt="Follow" src="'.$app_root.'/html/follow-done.png">';
+                }else{
+                    $entete_html .= '<img alt="Follow" src="'.$app_root.'/html/follow.png">';
+                }
+                $entete_html .= '</a>';
             }
-            $entete_html .= '</a></h3>';
         }
+        $entete_html .= '</h3>';
         $html = '';
         $page_id = $this->data[1];
         $start = (count($liste_tweets)-1)-$page_id*self::TWEETS_PER_PAGE;
